@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ form:FormGroup = this.fb.group({
 
 })
   constructor(
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ form:FormGroup = this.fb.group({
   registrar(){
     console.log(this.form.value)
     console.log(this.form.valid)
+    this.router.navigateByUrl('/dashboard')
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ form:FormGroup = this.fb.group({
   password:['123456',[Validators.required,Validators.minLength(6)]],
 })
   constructor(
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +23,7 @@ form:FormGroup = this.fb.group({
 login(){
   console.log(this.form.value)
   console.log(this.form.valid)
+  this.router.navigateByUrl('/dashboard')
 
 }
 }
