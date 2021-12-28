@@ -25,11 +25,19 @@ form:FormGroup = this.fb.group({
   }
 login(){
   console.log(this.form.value)
-  console.log(this.form.valid)
+  // console.log(this.form.valid)
   const {email,password} = this.form.value;
   this.authService.login(email,password)
-  .subscribe(res => console.log(res))
-  // this.router.navigateByUrl('/dashboard')
+  .subscribe(ok =>{
+    if(ok){
+      this.router.navigateByUrl('/dashboard')
+    }else{
+      //TODO
+    }
+    
+  })
+    
+   
 
 }
 }
