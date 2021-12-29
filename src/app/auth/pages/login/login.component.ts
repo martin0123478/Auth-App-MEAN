@@ -24,21 +24,21 @@ form:FormGroup = this.fb.group({
   ngOnInit(): void {
   }
 login(){
-  console.log(this.form.value)
-  // console.log(this.form.valid)
+  // this.authService.validarToken()
+  // .subscribe(resp => console.log(resp));
+  
+   console.log(this.form.value)
+   console.log(this.form.valid)
   const {email,password} = this.form.value;
-  this.authService.login(email,password)
+   this.authService.login(email,password)
   .subscribe(ok =>{
     console.log(ok)
-    if(ok ===true){
+     if(ok ===true){
       this.router.navigateByUrl('/dashboard')
-    }else{
+     }else{
       Swal.fire('Error',ok,'error')
     }
     
   })
-    
-   
-
-}
+  }
 }
