@@ -15,6 +15,13 @@ export class AuthService {
     private service: HttpClient
   ) { }
 
+  registro(name:string,email:string,password:string){
+    const url = `${this.baseURL}/new`
+    const body = {name,email,password}
+    return this.service.post(url,body)
+
+  }
+
   login(email:string,password:string){
     const url = `${this.baseURL}/auth`
     const body = {email,password}
@@ -55,5 +62,9 @@ export class AuthService {
      }),
      catchError( err => of(false))
    )
+  }
+
+  logout(){
+    localStorage.clear();
   }
 }

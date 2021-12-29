@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ form:FormGroup = this.fb.group({
 })
   constructor(
     private fb:FormBuilder,
-    private router:Router
+    private router:Router,
+    private service:AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,9 @@ form:FormGroup = this.fb.group({
   registrar(){
     console.log(this.form.value)
     console.log(this.form.valid)
+    const {name,email,password} = this.form.value;
+    this.service.registro(name,email,password)
+    .subscribe(data =>console.log(data))
     this.router.navigateByUrl('/dashboard')
   }
 
